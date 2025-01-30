@@ -1,15 +1,14 @@
-import tkinter as tk
-from tkinter import ttk
+import flet as ft
 
-root = tk.Tk()
+def main(page: ft.Page):
+    def add_clicked(e):
+        page.add(ft.Checkbox(label=new_task.value))
+        new_task.value = ""
+        page.window.height = "auto"
+        page.update()
 
-lable = tk.Label(root, text="Hello World")
-lable.pack()
-root.geometry("400x400")
-root.title("mtroud")
-def click_Me():
-    print("tessph")
-clk_BUTTON = tk.Button(root, text="teesph", command=click_Me)
-clk_BUTTON.pack()
+    new_task = ft.TextField(hint_text="شنو سويت اليوم?")
 
-root.mainloop()
+    page.add(new_task, ft.FloatingActionButton(icon=ft.Icons.ADD, on_click=add_clicked))
+
+ft.app(main)
